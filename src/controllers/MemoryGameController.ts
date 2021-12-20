@@ -1,3 +1,4 @@
+import { time } from "console";
 import { BaseContext } from "koa";
 import { body } from "koa-swagger-decorator";
 import internal = require("stream");
@@ -18,12 +19,13 @@ interface GameSession {
   TotalFound: number;
   gameOver: boolean;
   blocked: boolean;
-  prevIndex: number;
-  currentIndex: number;
+  prevIndex: number; //nece tribat
+  currentIndex: number; //nece tribat
   ImagePairs: number[];
   KeyStates: number[];
   Score: ScoreInterface;
-  blockedDelay: number;
+  blockedDelay: number; //nece tribat
+  lastInputtime: number;
 }
 
 const KeyStatesDefault = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -58,6 +60,7 @@ function RestartGame() {
     KeyStates: KeyStatesDefault,
     Score: ScoreDefault,
     blockedDelay: 500,
+    lastInputtime: new Date().getTime(), //milisekunde
   };
 
   //dodaje session
@@ -163,5 +166,24 @@ export default class MemoryGameController {
   public static async ButtonPressed(ctx: BaseContext) {
     let Temporary = ButtonPress(ctx);
     //buttonpress sa svin podacima
+  }
+}
+
+//Sleep za brisanje sesssiona
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+DeleteOld();
+///Brisanje Starih sessiona
+async function DeleteOld() {
+  while (true) {
+    let tempTime = new Date().getTime();
+    let TemporarySessions = Sessions.filter(
+      (sessions) => tempTime - sessions.lastInputtime < 60000 * 5
+    ); //200000
+    Sessions = TemporarySessions;
+    console.log("Sessions running :", Sessions.length);
+    await sleep(60000);
   }
 }

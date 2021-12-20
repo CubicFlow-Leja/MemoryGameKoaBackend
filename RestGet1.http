@@ -8,7 +8,8 @@ Content-Type: application/json
    // "gameOver": false,
    // "blocked": false,
   //  "prevIndex": -1,
-    "ClickedIndex": -1
+    "ClickedIndex1": -1,
+     "ClickedIndex2": -1
    // "ImagePairs": null,
    // "KeyStates": null,
    // "Score": null,
