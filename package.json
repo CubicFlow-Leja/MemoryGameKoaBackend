@@ -1,8 +1,8 @@
 {
-  "name": "KoaBackendMemoryGame",
+  "name": "koabackendmemorygame",
   "version": "0.0.0",
   "scripts": {
-    "start": "ts-node ./src/app.ts"
+    "start": "nodemon ./src/app.ts"
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
