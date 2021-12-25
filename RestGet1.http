@@ -2,7 +2,7 @@ GET http://localhost:3000/MemoryGameInit
 Content-Type: application/json
 
 {
-    "id": 1 
+    "id": 0 
 }
 //samo saljemo id , ako ne postoji, instancira session i get vrati taj session
 //ako postoji, samo ga reseta i idemo dalje

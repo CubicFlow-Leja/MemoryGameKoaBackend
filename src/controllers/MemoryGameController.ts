@@ -1,8 +1,6 @@
-import { BaseContext } from "koa";
-
 let NextFreeId = 0;
 let NumberOfSessions = 0;
-let MaxNumberOfSessions = 3;
+let MaxNumberOfSessions = 15;
 
 interface GameSession {
   id: number;
@@ -110,7 +108,7 @@ function ButtonsPressed(FESessionData: any) {
   let Id = FESessionData.id;
   let Click1 = FESessionData.ClickedIndex1;
   let Click2 = FESessionData.ClickedIndex2;
-  console.log("id clicka =", Id);
+  //  console.log("id clicka =", Id);
   let CurrentSession = Sessions.find((session) => session.id == Id);
   //ako ne postoji session onda nesto nevalja
   if (CurrentSession == null)
@@ -119,6 +117,10 @@ function ButtonsPressed(FESessionData: any) {
   //ako postoji session bitno je da updejtan time pa nema veze sta se dalje dogodi bitno je da user radi nesto
   //sta znaci da mu nesmin brejkat session
   CurrentSession.lastInputtime = new Date().getTime();
+
+  //ako ide patchat a igra je gotova
+  if (CurrentSession.gameOver || CurrentSession.Win)
+    return { session: CurrentSession, status: "FaultyInput" };
 
   //ako nesto nije uredu samo returna isti session pa client nakon delaya dopusti igru opet
   if (Click1 == Click2 || Click1 == -1 || Click2 == -1)
@@ -140,22 +142,24 @@ function ButtonsPressed(FESessionData: any) {
   let CorrectPairs =
     CurrentSession.ImagePairs[Click1] == CurrentSession.ImagePairs[Click2];
 
+  //oduzme turn i ako nevalja
+  CurrentSession.turns--;
+
+  //ako nema turnova game over
+  if (CurrentSession.turns <= 0) CurrentSession.gameOver = true;
+
   //ako su netocni return stari sessions sa WrongPairs
   if (!CorrectPairs) return { session: CurrentSession, status: "WrongPair" };
 
   //ako su tocni
   //postavi ta 2 statea na 1
   //podigne score
-  //oduzme turn
 
   tempStates[Click1] = 1;
   tempStates[Click2] = 1;
   CurrentSession.KeyStates = tempStates;
-  CurrentSession.turns--;
   CurrentSession.TotalFound++;
 
-  //ako nema turnova game over
-  if (CurrentSession.turns <= 0) CurrentSession.gameOver = true;
   //ako je sve pronadeno onda je win
   if (CurrentSession.TotalFound >= 8) CurrentSession.Win = true;
 
@@ -196,9 +200,9 @@ export default class MemoryGameController {
         ctx.body = Temporary.session;
         ctx.status = 201;
         break;
-      case "WrongPair": //304 -> cached verzija je ista ka server verzija , client samo triba css sredit
-        ctx.body = "Cached session still viable";
-        ctx.status = 304;
+      case "WrongPair": //201-> modify, izgubia je turn
+        ctx.body = Temporary.session;
+        ctx.status = 201;
         break;
       case "FaultyInput": //304 -> cached verzija je ista ka server verzija , client samo triba css sredit
         ctx.body = "Cached session still viable";

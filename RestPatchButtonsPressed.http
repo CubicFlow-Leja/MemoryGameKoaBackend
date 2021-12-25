@@ -2,9 +2,9 @@ PATCH  http://localhost:3000/GameTick
 Content-Type: application/json
 
 {
-    "id": 1,
-    "ClickedIndex1": 12,
-    "ClickedIndex2":13
+    "id": 0,
+    "ClickedIndex1": 4,
+    "ClickedIndex2":7
 }
 
 
