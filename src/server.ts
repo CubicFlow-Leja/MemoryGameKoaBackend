@@ -1,20 +1,16 @@
 import * as Router from "koa-router";
-import IndexController from "./controllers/index.controller";
 import MemoryGameController from "./controllers/MemoryGameController";
-import UserController from "./controllers/users.controller";
-import UsersController from "./controllers/users.controller";
 
 const router = new Router();
 
-//testovi
-router.get("/", IndexController.getIndex);
-
-router.get("/users", UsersController.getUsers);
-
-router.post("/users/add", UserController.AddUser);
+//Samo eto
+router.get("/", MemoryGameController.ServerWorkingCheck);
 
 //memorygame
+//nek ovo bude get zasad
 router.get("/MemoryGameInit", MemoryGameController.InitGame);
-router.post("/MemoryGameInit", MemoryGameController.ButtonPressed);
+
+//ovo mora bit patch request jer saljen input koji minja resource koji postoji
+router.patch("/GameTick", MemoryGameController.GameTick);
 
 export default router;

@@ -1,0 +1,13 @@
+PATCH  http://localhost:3000/GameTick
+Content-Type: application/json
+
+{
+    "id": 1,
+    "ClickedIndex1": 12,
+    "ClickedIndex2":13
+}
+
+
+//salje id i klikove
+//ako je sve ispravno ga updejta ili vrati da je cachirani dobar jer nisi pogodia
+//ili vrati session error

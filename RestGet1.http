@@ -2,18 +2,8 @@ GET http://localhost:3000/MemoryGameInit
 Content-Type: application/json
 
 {
-    "id": -1,
-   // "turns": 16,
-   // "TotalFound": 0,
-   // "gameOver": false,
-   // "blocked": false,
-  //  "prevIndex": -1,
-    "ClickedIndex1": -1,
-     "ClickedIndex2": -1
-   // "ImagePairs": null,
-   // "KeyStates": null,
-   // "Score": null,
-   // "blockedDelay": 500
+    "id": 1 
 }
-//turns, totalfound,gameover,blocked, parove,stateove score i delay ne triba slat s FE
-//fe bi triba slat ID, i kojeg je kliknia i tjt
+//samo saljemo id , ako ne postoji, instancira session i get vrati taj session
+//ako postoji, samo ga reseta i idemo dalje
+
