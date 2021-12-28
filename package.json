@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
+    "cors": "^2.8.5",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-helmet": "^6.1.0",
@@ -15,8 +16,8 @@
     "koa-router": "^10.1.1",
     "koa-swagger-decorator": "^1.8.0",
     "reflect-metadata": "^0.1.13",
-    "typescript": "^4.5.4",
-    "tsc": "^2.0.3"
+    "tsc": "^2.0.3",
+    "typescript": "^4.5.4"
   },
   "devDependencies": {
     "@types/koa": "^2.13.4",
