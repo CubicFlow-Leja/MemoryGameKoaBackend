@@ -6,11 +6,14 @@ import "reflect-metadata";
 import router from "./server";
 
 const app = new Koa();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.use(json());
 app.use(logger());
 app.use(bodyParser());
+
+const cors = require("@koa/cors");
+app.use(cors());
 
 app.use(router.routes()).use(router.allowedMethods());
 

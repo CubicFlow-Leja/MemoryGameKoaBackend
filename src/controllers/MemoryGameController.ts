@@ -1,6 +1,6 @@
 let NextFreeId = 0;
 let NumberOfSessions = 0;
-let MaxNumberOfSessions = 15;
+let MaxNumberOfSessions = 2;
 
 interface GameSession {
   id: number;
@@ -186,7 +186,9 @@ export default class MemoryGameController {
         ctx.status = 201;
         break;
       case "SessionError": //503 -> Service Unavailable , ako je maxsession pa nemoze vise kreirat
-        ctx.body = "Session limit exceeded, try again later";
+        ctx.body = JSON.stringify({
+          text: "Session limit exceeded, try again later",
+        });
         ctx.status = 503;
         break;
     }
@@ -195,6 +197,11 @@ export default class MemoryGameController {
   public static async GameTick(ctx) {
     //pritisnute 2 slike sa ClickedIndex1 i ClickedIndex2 sa svin podacima
     let Temporary = ButtonsPressed(ctx.request.body);
+    ctx.set({
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    });
+    console.log(ctx.request.body);
     switch (Temporary.status) {
       case "Updated": //201 -> Create i modify ista stvar, pritisnuta tocna kombinacija i vrati result kao novi json session file
         ctx.body = Temporary.session;
@@ -205,7 +212,10 @@ export default class MemoryGameController {
         ctx.status = 201;
         break;
       case "FaultyInput": //304 -> cached verzija je ista ka server verzija , client samo triba css sredit
-        ctx.body = "Cached session still viable";
+        ctx.body = JSON.stringify({
+          text: "Cached session still viable",
+        });
+        //ctx.body = Temporary.session;
         ctx.status = 304;
         break;
       case "EndGame": //201 -> modify/create , win/lose, ugl igra gotova
@@ -213,7 +223,9 @@ export default class MemoryGameController {
         ctx.status = 201;
         break;
       case "SessionError": //410 -> Gone, session timeout
-        ctx.body = "Session timeout.";
+        ctx.body = JSON.stringify({
+          text: "Session timeout.",
+        });
         ctx.status = 410;
         break;
     }
@@ -221,7 +233,9 @@ export default class MemoryGameController {
 
   public static async ServerWorkingCheck(ctx) {
     ctx.status = 200;
-    ctx.body = "all good";
+    ctx.body = JSON.stringify({
+      text: "all good",
+    });
   }
 }
 
@@ -236,7 +250,7 @@ async function DeleteOld() {
   while (true) {
     let tempTime = new Date().getTime();
     let TemporarySessions = Sessions.filter(
-      (sessions) => tempTime - sessions.lastInputtime < 60000 * 3
+      (sessions) => tempTime - sessions.lastInputtime < 60000 * 1
     ); //200000
     Sessions = TemporarySessions;
     NumberOfSessions = Sessions.length;

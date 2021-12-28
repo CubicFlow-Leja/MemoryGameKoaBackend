@@ -1,4 +1,4 @@
-PATCH  http://localhost:3000/GameTick
+PATCH  http://localhost:3001/GameTick
 Content-Type: application/json
 
 {

@@ -8,7 +8,7 @@ router.get("/", MemoryGameController.ServerWorkingCheck);
 
 //memorygame
 //nek ovo bude get zasad
-router.get("/MemoryGameInit", MemoryGameController.InitGame);
+router.patch("/MemoryGameInit", MemoryGameController.InitGame);
 
 //ovo mora bit patch request jer saljen input koji minja resource koji postoji
 router.patch("/GameTick", MemoryGameController.GameTick);
