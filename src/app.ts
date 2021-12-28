@@ -19,13 +19,20 @@ const cors = require("@koa/cors");
 app.use(cors(corsOptions));
 
 app.use(function (ctx) {
-  ctx.addHeader("Access-Control-Allow-Credentials", true);
-  ctx.addHeader("Access-Control-Allow-Origin", "*");
-  ctx.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS,PATCH");
-  ctx.addHeader(
+  ctx.setheader("Access-Control-Allow-Credentials", true);
+  ctx.setheader("Access-Control-Allow-Origin", "*");
+  ctx.setheader("Access-Control-Allow-Methods", "GET, POST, OPTIONS,PATCH");
+  ctx.setheader(
     "Access-Control-Allow-Headers",
     "appid, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
   );
+  if (ctx.method === "OPTIONS") {
+    ctx.setheader(
+      "Access-Control-Allow-Methods",
+      "POST, PUT, PATCH, GET, DELETE"
+    );
+    return (ctx.status = 200);
+  }
   ctx.next();
 });
 
