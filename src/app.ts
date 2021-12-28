@@ -19,10 +19,10 @@ const cors = require("@koa/cors");
 app.use(cors(corsOptions));
 
 app.use(function (ctx) {
-  ctx.setheader("Access-Control-Allow-Credentials", true);
-  ctx.setheader("Access-Control-Allow-Origin", "*");
-  ctx.setheader("Access-Control-Allow-Methods", "GET, POST, OPTIONS,PATCH");
-  ctx.setheader(
+  ctx.addHeader("Access-Control-Allow-Credentials", true);
+  ctx.addHeader("Access-Control-Allow-Origin", "*");
+  ctx.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS,PATCH");
+  ctx.addHeader(
     "Access-Control-Allow-Headers",
     "appid, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
   );

@@ -192,10 +192,6 @@ export default class MemoryGameController {
         ctx.status = 503;
         break;
     }
-    ctx.setHeader("Access-Control-Allow-Origin", "*");
-    ctx.setHeader("Access-Control-Allow-Methods", "*");
-    ctx.setHeader("Access-Control-Allow-Headers", "*");
-    ctx.end();
   }
 
   public static async GameTick(ctx) {
