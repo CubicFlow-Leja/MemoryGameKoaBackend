@@ -2,7 +2,8 @@
   "name": "koabackendmemorygame",
   "version": "0.0.0",
   "scripts": {
-    "start": "nodemon ./src/app.ts"
+    "start": "nodemon ./src/app.ts",
+    "startHeroku": "ts-node ./src/app.ts"
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
