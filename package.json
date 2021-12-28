@@ -2,7 +2,7 @@
   "name": "koabackendmemorygame",
   "version": "0.0.0",
   "scripts": {
-    "start": "nodemon ./src/app.ts"
+    "start": " ./src/app.ts"
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
