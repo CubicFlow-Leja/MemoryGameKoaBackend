@@ -6,7 +6,7 @@ import "reflect-metadata";
 import router from "./server";
 
 const Whitelist =
-  "https://61cb2ca5eeb7a40007974394--serene-lewin-e9bb18.netlify.app";
+  "https://61cb2ca5eeb7a40007974394--serene-lewin-e9bb18.netlify.app/";
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || Whitelist.indexOf(origin) !== -1) {
