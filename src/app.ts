@@ -5,6 +5,19 @@ import * as logger from "koa-logger";
 import "reflect-metadata";
 import router from "./server";
 
+const Whitelist =
+  "https://61cb2ca5eeb7a40007974394--serene-lewin-e9bb18.netlify.app";
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || Whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+
 const app = new Koa();
 const port = process.env.PORT || 3001;
 
@@ -12,9 +25,6 @@ app.use(json());
 app.use(logger());
 app.use(bodyParser());
 
-var corsOptions = {
-  origin: "*",
-};
 const cors = require("@koa/cors");
 app.use(cors(corsOptions));
 
