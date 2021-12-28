@@ -1,6 +1,6 @@
 let NextFreeId = 0;
 let NumberOfSessions = 0;
-let MaxNumberOfSessions = 2;
+let MaxNumberOfSessions = 50;
 
 interface GameSession {
   id: number;
