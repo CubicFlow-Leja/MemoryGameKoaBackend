@@ -6,7 +6,7 @@ import "reflect-metadata";
 import router from "./server";
 
 const app = new Koa();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT;
 
 app.use(json());
 app.use(logger());
