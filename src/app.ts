@@ -12,8 +12,11 @@ app.use(json());
 app.use(logger());
 app.use(bodyParser());
 
+var corsOptions = {
+  origin: "*",
+};
 const cors = require("@koa/cors");
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(router.routes()).use(router.allowedMethods());
 
