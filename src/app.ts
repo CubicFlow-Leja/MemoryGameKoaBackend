@@ -18,6 +18,15 @@ var corsOptions = {
 const cors = require("@koa/cors");
 app.use(cors(corsOptions));
 
+app.use(function (ctx) {
+  ctx.setHeader("Access-Control-Allow-Origin", "*");
+  ctx.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  ctx.next();
+});
+
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(port, () => {
