@@ -1,6 +1,6 @@
 let NextFreeId = 0;
 let NumberOfSessions = 0;
-let MaxNumberOfSessions = 50;
+let MaxNumberOfSessions = 5;
 
 interface GameSession {
   id: number;
@@ -193,16 +193,16 @@ export default class MemoryGameController {
         break;
     }
 
-    ctx.header(
-      "Access-Control-Allow-Methods",
-      "POST, PUT,OPTIONS, PATCH, GET, DELETE"
-    );
-    ctx.header("Access-Control-Allow-Credentials", true);
-    ctx.header("Access-Control-Allow-Origin", "*");
-    ctx.header(
-      "Access-Control-Allow-Headers",
-      "appid, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
-    );
+    // ctx.header(
+    //   "Access-Control-Allow-Methods",
+    //   "POST, PUT,OPTIONS, PATCH, GET, DELETE"
+    // );
+    // ctx.header("Access-Control-Allow-Credentials", true);
+    // ctx.header("Access-Control-Allow-Origin", "*");
+    // ctx.header(
+    //   "Access-Control-Allow-Headers",
+    //   "appid, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
+    // );
   }
 
   public static async GameTick(ctx) {
@@ -240,16 +240,16 @@ export default class MemoryGameController {
         ctx.status = 410;
         break;
     }
-    ctx.header(
-      "Access-Control-Allow-Methods",
-      "POST, PUT,OPTIONS, PATCH, GET, DELETE"
-    );
-    ctx.header("Access-Control-Allow-Credentials", true);
-    ctx.header("Access-Control-Allow-Origin", "*");
-    ctx.header(
-      "Access-Control-Allow-Headers",
-      "appid, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
-    );
+    // ctx.header(
+    //   "Access-Control-Allow-Methods",
+    //   "POST, PUT,OPTIONS, PATCH, GET, DELETE"
+    // );
+    // ctx.header("Access-Control-Allow-Credentials", true);
+    // ctx.header("Access-Control-Allow-Origin", "*");
+    // ctx.header(
+    //   "Access-Control-Allow-Headers",
+    //   "appid, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
+    // );
   }
 
   public static async ServerWorkingCheck(ctx) {
