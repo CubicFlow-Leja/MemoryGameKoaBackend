@@ -239,6 +239,13 @@ export default class MemoryGameController {
         break;
     }
     ctx.header("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE");
+    ctx.header("Access-Control-Allow-Credentials", true);
+    ctx.header("Access-Control-Allow-Origin", "*");
+    ctx.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS,PATCH");
+    ctx.header(
+      "Access-Control-Allow-Headers",
+      "appid, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
+    );
   }
 
   public static async ServerWorkingCheck(ctx) {

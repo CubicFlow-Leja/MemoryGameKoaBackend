@@ -17,6 +17,9 @@ import router from "./server";
 //   },
 //   credentials: true,
 // };
+var options = {
+  origin: "*",
+};
 
 const app = new Koa();
 const port = process.env.PORT || 3001;
@@ -26,7 +29,7 @@ app.use(logger());
 app.use(bodyParser());
 
 const cors = require("@koa/cors");
-app.use(cors());
+app.use(cors(options));
 
 app.use(router.routes()).use(router.allowedMethods());
 
