@@ -14,7 +14,8 @@
     "koa-logger": "^3.2.1",
     "koa-router": "^10.1.1",
     "koa-swagger-decorator": "^1.8.0",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "ts-node" : "^3.3.0"
   },
   "devDependencies": {
     "@types/koa": "^2.13.4",
