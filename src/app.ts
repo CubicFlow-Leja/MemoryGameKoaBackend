@@ -27,7 +27,6 @@ app.use(function (ctx) {
     "appid, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
   );
   ctx.next();
-  ctx.send("OK");
 });
 
 app.use(router.routes()).use(router.allowedMethods());
