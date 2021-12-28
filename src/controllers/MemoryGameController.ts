@@ -192,6 +192,10 @@ export default class MemoryGameController {
         ctx.status = 503;
         break;
     }
+    ctx.setheader(
+      "Access-Control-Allow-Methods",
+      "POST, PUT, PATCH, GET, DELETE"
+    );
   }
 
   public static async GameTick(ctx) {
@@ -229,6 +233,10 @@ export default class MemoryGameController {
         ctx.status = 410;
         break;
     }
+    ctx.setheader(
+      "Access-Control-Allow-Methods",
+      "POST, PUT, PATCH, GET, DELETE"
+    );
   }
 
   public static async ServerWorkingCheck(ctx) {
